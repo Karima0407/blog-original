@@ -28,11 +28,11 @@ class Article
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
 
-    #[ORM\ManyToMany(targetEntity: category::class, inversedBy: 'articles')]
+    #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'articles')]
     private Collection $category;
 
     #[ORM\ManyToOne(inversedBy: 'articles')]
-    private ?user $auteur = null;
+    private ?User $auteur = null;
 
     public function __construct()
     {

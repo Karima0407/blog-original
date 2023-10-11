@@ -1,19 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %} Hello Acceuil! {% endblock %}
 
 {% block body %}
 <style>
 </style>
 
 <div class="example-wrapper">
-    <h1> {{ hello_world }}! ✅</h1>
+    <h1> Page d'Acceuil</h1>
 </div>
-{% set myVar = "bonjour tout le monde" %}
-<h1>{{ myVar }}</h1>
-
-{% set users = ["tom", "Tim", "Bugs"] %}
-    {% for user in users %}
-        <h2>{{ user | upper}}</h2>
-    {% endfor %}
+    <div class="row">
+        {% for article in articles %}
+        <div class="card col-md-4" style="width: 18rem;">
+            <p class="date">{{ article.createdAt | date("d/m/Y")}}</p>
+            <img src="{{article.image}}" class="card-img-top" alt="{{ article.title }}">
+            <div class="card-body">
+              <h5 class="card-title"> {{article.title | upper}}</h5>
+              <a href="#" class="btn btn-primary">En Savoir plus</a>
+            </div>
+          </div>
+        {% endfor %}
+    </div>
 {% endblock %}
