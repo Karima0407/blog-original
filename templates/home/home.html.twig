@@ -20,5 +20,17 @@
             </div>
           </div>
         {% endfor %}
+        <div class="col-md-4">
+          <h2>Catégories</h2>
+          <ul class="list-group">
+              {% for categorie in categories %}
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                      <a href="{{path('show_articles_category', {'id': categorie.id})}}">{{ categorie.title }}
+                          <span class="badge bg-primary rounded-pill">{{ categorie.articles | length }} article(s)</span>
+                      </a>
+                  </li>
+              {% endfor %}
+          </ul>
+      </div>
     </div>
 {% endblock %}
