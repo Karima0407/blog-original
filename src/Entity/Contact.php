@@ -17,11 +17,14 @@ class Contact
 
     #[Assert\Length(
         min: 3,
-        minMessage: 'vous devez avoir minimum 3 caractères',
+        max: 10,
+        minMessage:"Your first name must be at least {{ limit }} characters long",
+        maxMessage:"Your first name cannot be longer than {{ limit }} characters" 
     )]
     #[ORM\Column(length: 255)]
     private ?string $firstname_lastname = null;
-
+    
+    #[Assert\Email(message:"The email '{{ value }}' is not a valid email." )]
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 

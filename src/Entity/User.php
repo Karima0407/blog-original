@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User
@@ -36,6 +37,9 @@ class User
 
     #[ORM\OneToMany(mappedBy: 'auteur', targetEntity: Article::class)]
     private Collection $articles;
+
+    #[Assert\EqualTo(propertyPath:"password", message:"Les deux mots de passe doivent être identiques")]
+    private $passwordConfirm;
 
     public function __construct()
     {
@@ -152,8 +156,19 @@ class User
 
 
 
-    public function __toString(){
+    public function __toString()
+    {
 
-        return $this->firstname.' '.$this->lastname;
+        return $this->firstname . ' ' . $this->lastname;
+    }
+
+    public function getpasswordConfirm(): ?string
+    {
+        return $this->passwordConfirm;
+    }
+    public function setpasswordConfirm(string $passwordConfirm): self
+    {
+        $this->passwordConfirm = $passwordConfirm;
+        return $this;
     }
 }
